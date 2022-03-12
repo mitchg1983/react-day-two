@@ -21,13 +21,6 @@ export class App extends Component {
     newTodo: "",
   };
 
-  handleOnInputChange = (event) => {
-    console.log(this.state.newTodo);
-    this.setState({
-      newTodo: event.target.value,
-    });
-  };
-
   showTodoArray = () => {
     return (
       <ul>
@@ -36,6 +29,14 @@ export class App extends Component {
         ))}
       </ul>
     );
+  };
+
+  handleOnInputChange = (event) => {
+    console.log(this.state.newTodo);
+    this.setState({
+      newTodo: event.target.value,
+    });
+    console.log(event);
   };
 
   handleOnSubmit = (event) => {
@@ -47,9 +48,19 @@ export class App extends Component {
         todo: this.state.newTodo,
       },
     ];
+
+    //set newTodo to an empty string here, this 'clears' the input from the backend
     this.setState({
       todoArray: newArray,
+      newTodo: "",
     });
+    //query selector gets a 'nodelist?' of all the input elements from the page
+    //Array.from turns it into an array we can actually work with
+    //manually set the value of the input fields to all be empty strings
+    //would this work differently if we had default values for the input boxes?
+    Array.from(document.querySelectorAll("input")).forEach(
+      (input) => (input.value = "")
+    );
   };
 
   render() {
