@@ -41,26 +41,39 @@ export class App extends Component {
 
   handleOnSubmit = (event) => {
     event.preventDefault();
-    let newArray = [
-      ...this.state.todoArray,
-      {
-        id: this.state.todoArray.length + 1,
-        todo: this.state.newTodo,
-      },
-    ];
+    const { newTodo } = this.state;
 
-    //set newTodo to an empty string here, this 'clears' the input from the backend
-    this.setState({
-      todoArray: newArray,
-      newTodo: "",
-    });
-    //query selector gets a 'nodelist?' of all the input elements from the page
-    //Array.from turns it into an array we can actually work with
-    //manually set the value of the input fields to all be empty strings
-    //would this work differently if we had default values for the input boxes?
-    Array.from(document.querySelectorAll("input")).forEach(
-      (input) => (input.value = "")
-    );
+    //this function will return true, if the value passed to it is null,
+    //or if the value is a string and it only contains spaces(whitespaces?)
+    const isNullEmptyBlank = (str) => {
+      console.log("null running");
+      return str === null || str.match(/^ *$/) !== null;
+    };
+
+    if (!isNullEmptyBlank(newTodo)) {
+      let newArray = [
+        ...this.state.todoArray,
+        {
+          id: this.state.todoArray.length + 1,
+          todo: this.state.newTodo,
+        },
+      ];
+
+      //set newTodo to an empty string here, this 'clears' the input from the backend
+      this.setState({
+        todoArray: newArray,
+        newTodo: "",
+      });
+      //query selector gets a 'nodelist?' of all the input elements from the page
+      //Array.from turns it into an array we can actually work with
+      //manually set the value of the input fields to all be empty strings
+      //would this work differently if we had default values for the input boxes?
+      Array.from(document.querySelectorAll("input")).forEach(
+        (input) => (input.value = "")
+      );
+    } else {
+      console.log("Error, the input cannot be empty.");
+    }
   };
 
   render() {
