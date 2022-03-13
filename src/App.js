@@ -10,6 +10,7 @@ import {
   Card,
   Container,
   Stack,
+  ListGroup,
 } from "react-bootstrap";
 
 export class App extends Component {
@@ -34,19 +35,21 @@ export class App extends Component {
 
   showTodoArray = () => {
     return (
-      <ul>
+      // <ul>
+
+      // </ul>
+
+      <ListGroup>
         {this.state.todoArray.map(({ todo, id }) => (
-          <li key={id}>{todo}</li>
+          <ListGroup.Item key={id}>{todo}</ListGroup.Item>
         ))}
-      </ul>
+      </ListGroup>
     );
   };
 
   showError = () => {
-    return (
-      <p className="text-danger">{this.state.errorMessage}</p>
-    )
-  }
+    return <p className="text-danger">{this.state.errorMessage}</p>;
+  };
 
   handleOnInputChange = (event) => {
     console.log(this.state.newTodo);
@@ -70,7 +73,7 @@ export class App extends Component {
     if (!isNullEmptyBlank(newTodo)) {
       this.setState({
         errorMessage: "",
-      })
+      });
       let newArray = [
         ...this.state.todoArray,
         {
@@ -95,7 +98,7 @@ export class App extends Component {
       console.log("Error, the input cannot be empty.");
       this.setState({
         errorMessage: "Error, the input cannot be empty.",
-      })
+      });
     }
   };
 
