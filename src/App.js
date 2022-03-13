@@ -1,6 +1,16 @@
 import React, { Component } from "react";
 import "./App.css";
 import { v4 as uuidv4 } from "uuid";
+import "bootstrap/dist/css/bootstrap.min.css";
+import {
+  Form,
+  Col,
+  Row,
+  Button,
+  Card,
+  Container,
+  Stack,
+} from "react-bootstrap";
 
 export class App extends Component {
   state = {
@@ -19,6 +29,7 @@ export class App extends Component {
       },
     ],
     newTodo: "",
+    errorMessage: "",
   };
 
   showTodoArray = () => {
@@ -30,6 +41,12 @@ export class App extends Component {
       </ul>
     );
   };
+
+  showError = () => {
+    return (
+      <p className="text-danger">{this.state.errorMessage}</p>
+    )
+  }
 
   handleOnInputChange = (event) => {
     console.log(this.state.newTodo);
@@ -51,6 +68,9 @@ export class App extends Component {
     };
 
     if (!isNullEmptyBlank(newTodo)) {
+      this.setState({
+        errorMessage: "",
+      })
       let newArray = [
         ...this.state.todoArray,
         {
@@ -73,6 +93,9 @@ export class App extends Component {
       );
     } else {
       console.log("Error, the input cannot be empty.");
+      this.setState({
+        errorMessage: "Error, the input cannot be empty.",
+      })
     }
   };
 
@@ -80,21 +103,35 @@ export class App extends Component {
     const { todo } = this.state;
     return (
       <div className="App">
-        <div className="Inputform">
-          <form onSubmit={this.handleOnSubmit}>
-            <label>Add new Todo:</label>
-            <input
-              name="todo"
-              value={todo}
-              onChange={this.handleOnInputChange}
-            />
-            <button>Submit</button>
-          </form>
-        </div>
-        <div className="ListandError">
-          <div className="Tasklist">{this.showTodoArray()}</div>
-          <div className="Errorbox"></div>
-        </div>
+        <Container>
+          <Row>
+            <Card className="mb-3">
+              <Card.Body>
+                <Card.Title>
+                  Welcome to the last ToDo List, you'll ever need...
+                </Card.Title>
+
+                <div className="Inputform">
+                  <form onSubmit={this.handleOnSubmit}>
+                    <Stack direction="horizontal" gap={3}>
+                      <label>Add new Todo</label>
+                      <input
+                        name="todo"
+                        value={todo}
+                        onChange={this.handleOnInputChange}
+                      />
+                      <button>Submit</button>
+                    </Stack>
+                  </form>
+                </div>
+              </Card.Body>
+              <div>{this.showError()}</div>
+            </Card>
+          </Row>
+          <Row>
+            <div className="Tasklist">{this.showTodoArray()}</div>
+          </Row>
+        </Container>
       </div>
     );
   }
