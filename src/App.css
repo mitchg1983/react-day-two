@@ -1,17 +1,58 @@
 .App {
-  background-color: #282c34;
+  /* background-color: #f8f9f1; */
   min-height: 100vh;
-  font-size: 4vh;
-  color: white;
-}
-
-/* .App-header {
   
   
   display: flex;
   flex-direction: column;
+  align-content: center;
   align-items: center;
   justify-content: center;
   
+}
+
+.Tasklist {
   
-} */
+  /* border: 1px solid green; */
+  height: 50vh;
+  width: 45vw;
+  font-size: 3vh;
+  display: flex;
+  justify-content: center;
+  padding-top: 5vh;
+  margin-top: 5vh;
+  margin-right: 5vw;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  background-color: rgba(116, 245, 174, 0.534);
+}
+
+.Inputform {
+  
+  /* border: 1px solid rgb(72, 72, 27); */
+  height: 25vh;
+  width: 50vw;
+  font-size: 3.5vh;
+  display: flex;
+  align-items: center;
+  padding-left: 5vw;
+  background-color: rgba(242, 238, 129, 0.516);
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+}
+
+.Errorbox {
+  height: 25vh;
+  width: 10vw;
+  border: 1px solid black;
+
+}
+
+.ListandError {
+  display: flex;
+  align-items: center;
+}

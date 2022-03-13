@@ -80,12 +80,21 @@ export class App extends Component {
     const { todo } = this.state;
     return (
       <div className="App">
-        <form onSubmit={this.handleOnSubmit}>
-          <label>Add new Todo:</label>
-          <input name="todo" value={todo} onChange={this.handleOnInputChange} />
-          <button>Submit</button>
-        </form>
-        {this.showTodoArray()}
+        <div className="Inputform">
+          <form onSubmit={this.handleOnSubmit}>
+            <label>Add new Todo:</label>
+            <input
+              name="todo"
+              value={todo}
+              onChange={this.handleOnInputChange}
+            />
+            <button>Submit</button>
+          </form>
+        </div>
+        <div className="ListandError">
+          <div className="Tasklist">{this.showTodoArray()}</div>
+          <div className="Errorbox"></div>
+        </div>
       </div>
     );
   }
